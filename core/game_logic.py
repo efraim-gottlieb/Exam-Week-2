@@ -36,9 +36,11 @@ def run_full_game(deck: list[dict], player: dict, dealer: dict) -> None:
         if choice == 'H':
             player['hand'].append(deck.pop())
             game = calculate_hand_value(player['hand']) <= 21
-            print(calculate_hand_value(player['hand']))
             if not game:
+                print()
                 print('dealer won !')
+                print("player's hand :", calculate_hand_value(player['hand']))
+                print("dealer's hand :", calculate_hand_value(dealer['hand']))
                 return
     dealer_round = dealer_play(deck, dealer)
     if dealer_round:
@@ -50,4 +52,7 @@ def run_full_game(deck: list[dict], player: dict, dealer: dict) -> None:
             print('draw')
     else:
         print('player won !')
+        print()
+    print("player's hand :", calculate_hand_value(player['hand']))
+    print("dealer's hand :", calculate_hand_value(dealer['hand']))
         

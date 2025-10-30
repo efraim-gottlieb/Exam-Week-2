@@ -9,6 +9,3 @@ if __name__ == '__main__':
     player = {"hand": []} 
     dealer = {"hand": []}
     run_full_game(deck, player, dealer)
-    print()
-    print("player's hand :", calculate_hand_value(player['hand']))
-    print("dealer's hand :", calculate_hand_value(dealer['hand']))
