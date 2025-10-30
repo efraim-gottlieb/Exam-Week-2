@@ -22,11 +22,3 @@ def shuffle_by_suit(deck: list[dict], swaps: int = 5000) -> list[dict]:
             condition_met = not_equal and suite_condition_met
         deck[i], deck[j] = deck[j], deck[i]
     return [deck]
-
-
-
-
-a = build_standard_deck()
-b = a
-shuffle_by_suit(a)
-print(a == b)
