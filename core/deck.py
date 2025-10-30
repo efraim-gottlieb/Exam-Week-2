@@ -10,19 +10,16 @@ def build_standard_deck() -> list[dict]:
             deck.append({'rank' : str(i +1), 'suite' : suit})
     return deck
 
-
-
-
 def shuffle_by_suit(deck: list[dict], swaps: int = 5000) -> list[dict]:
     for _ in range(swaps):
-        t = False
-        while not t:
+        condition_met = False
+        while not condition_met:
             i = randint(0, len(deck) -1)
             suite = deck[i]['suite']
             j = randint(0, len(deck) -1)
             not_equal = i != j
-            condition_met = not j // 5 if suite == 'H' else not j // 3 if suite == 'C' else not j % 2 if suite == 'D' else not j // 7 if suite == 'S' else ''
-            t = not_equal and condition_met
+            suite_condition_met = not j % 5 if suite == 'H' else not j % 3 if suite == 'C' else not j % 2 if suite == 'D' else not j % 7 if suite == 'S' else ''
+            condition_met = not_equal and suite_condition_met
         deck[i], deck[j] = deck[j], deck[i]
     return [deck]
 
