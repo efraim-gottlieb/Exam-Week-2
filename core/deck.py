@@ -1,3 +1,6 @@
+from random import randint
+
+
 def build_standard_deck() -> list[dict]:
     deck = []
     for suit in ["H", "C", "D", "S"]:
@@ -7,11 +10,26 @@ def build_standard_deck() -> list[dict]:
             deck.append({'rank' : str(i +1), 'suite' : suit})
     return deck
 
-a = build_standard_deck()
-for i in a:
-    print(i)
-print(len(a))
+
 
 
 def shuffle_by_suit(deck: list[dict], swaps: int = 5000) -> list[dict]:
-    return [{}]
+    for _ in range(swaps):
+        t = False
+        while not t:
+            i = randint(0, len(deck) -1)
+            suite = deck[i]['suite']
+            j = randint(0, len(deck) -1)
+            not_equal = i != j
+            condition_met = not j // 5 if suite == 'H' else not j // 3 if suite == 'C' else not j % 2 if suite == 'D' else not j // 7 if suite == 'S' else ''
+            t = not_equal and condition_met
+        deck[i], deck[j] = deck[j], deck[i]
+    return [deck]
+
+
+
+
+a = build_standard_deck()
+b = a
+shuffle_by_suit(a)
+print(a == b)
