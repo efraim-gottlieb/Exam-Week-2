@@ -1,7 +1,12 @@
 from core.deck import build_standard_deck
 from core.deck import shuffle_by_suit
+# from core.game_logic import run_full_game
 
 
 if __name__ == '__main__':
-    deck = shuffle_by_suit(build_standard_deck())
+    deck = build_standard_deck()
+    shuffle_by_suit(deck)
     print(deck)
+    player = {"hand": []} 
+    dealer = {"hand": []}
+    # run_full_game(deck, player, dealer)

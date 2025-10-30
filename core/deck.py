@@ -21,4 +21,4 @@ def shuffle_by_suit(deck: list[dict], swaps: int = 5000) -> list[dict]:
             suite_condition_met = not j % 5 if suite == 'H' else not j % 3 if suite == 'C' else not j % 2 if suite == 'D' else not j % 7 if suite == 'S' else ''
             condition_met = not_equal and suite_condition_met
         deck[i], deck[j] = deck[j], deck[i]
-    return [deck]
+    return deck
