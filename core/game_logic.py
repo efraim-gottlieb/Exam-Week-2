@@ -1,3 +1,5 @@
+from core.player_io import ask_player_action
+
 def calculate_hand_value(hand: list[dict]) -> int:
     total = 0
     for card in hand:
@@ -23,6 +25,29 @@ def dealer_play(deck: list[dict], dealer: dict) -> bool:
     if calculate_hand_value(dealer['hand']) > 21 :
         print('dialer loss !')
         return False
+    return True
+
+def run_full_game(deck: list[dict], player: dict, dealer: dict) -> None:
+    deal_two_each(deck, player, dealer)
+    game = True
+    choice = None
+    while game and choice != 'S':
+        choice = ask_player_action()
+        if choice == 'H':
+            player['hand'].append(deck.pop())
+            game = calculate_hand_value(player['hand']) <= 21
+            print(calculate_hand_value(player['hand']))
+            if not game:
+                print('dealer won !')
+                return
+    dealer_round = dealer_play(deck, dealer)
+    if dealer_round:
+        if calculate_hand_value(dealer['hand']) > calculate_hand_value(player['hand']):
+            print('dealer won !')
+        elif calculate_hand_value(dealer['hand']) < calculate_hand_value(player['hand']):
+            print('player won !')
+        else:
+            print('draw')
     else:
-        return True
-    
+        print('player won !')
+        
