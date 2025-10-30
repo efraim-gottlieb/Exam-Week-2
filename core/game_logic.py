@@ -9,7 +9,6 @@ def calculate_hand_value(hand: list[dict]) -> int:
             total += int(card['rank'])
     return total
     
-
 def deal_two_each(deck: list[dict], player: dict, dealer: dict) -> None:
     card_1 = deck.pop()
     card_2 = deck.pop()
